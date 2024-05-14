@@ -23,11 +23,16 @@ const Details = () => {
     const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 
     useEffect(() => {
-        setDataOrder(data);
+        if(data)
+            setDataOrder(JSON.parse(JSON.stringify(data)));
     }, [data]);
 
     const updateOrder = () => {
         mutateAsync(dataOrder)
+    }
+
+    const updateLocalOrder = (data: GetOrderTypes | undefined) => {
+        setDataOrder(data)
     }
     
     return (
@@ -39,7 +44,7 @@ const Details = () => {
                 contentLabel="Example Modal"
                 ariaHideApp={false}
             >
-                <Products addCallback={(res) => setDataOrder(addUpdateItem(dataOrder, res))}/>
+                <Products addCallback={(res) => updateLocalOrder(addUpdateItem(dataOrder, res))}/>
             </Modal>
             <div data-testid={`order_detail_card`} className="order_card">
                 <div className="inner">
@@ -56,7 +61,7 @@ const Details = () => {
                         <button 
                             style={{opacity: isObjectDiff(data, dataOrder) ? 1 : 0.5, cursor: !isObjectDiff(data, dataOrder) ? 'block' : 'pointer'}}
                             disabled={!isObjectDiff(data, dataOrder)} 
-                            onClick={updateOrder} 
+                            onClick={() => updateOrder()} 
                             className="place_order_btn">
                                 Update order
                         </button>
@@ -75,12 +80,12 @@ const Details = () => {
                                 <div style={{display: 'inline-flex', flexDirection: 'row', alignItems: 'center', width: '40%', justifyContent: 'space-between'}}>
                                     <p>Quantity: {item.quantity}</p>
                                     <div style={{display: 'inline-flex', flexDirection: 'column'}}>
-                                        <button onClick={() => setDataOrder(incrQuantity(i, dataOrder))}>↑</button>
-                                        <button disabled={parseInt(item.quantity) === 1} onClick={() => setDataOrder(decrQuantity(i, dataOrder))}>↓</button>
+                                        <button onClick={() => updateLocalOrder(incrQuantity(i, dataOrder))}>↑</button>
+                                        <button disabled={parseInt(item.quantity) === 1} onClick={() => updateLocalOrder(decrQuantity(i, dataOrder))}>↓</button>
                                     </div>
                                 </div>
                                 <p className="price">Total price: {item.total}€</p>
-                                <button className="remove_btn" onClick={() => setDataOrder(removeItem(i, dataOrder))}>Remove item</button>
+                                <button className="remove_btn" onClick={() => updateLocalOrder(removeItem(i, dataOrder))}>Remove item</button>
                             </div>
                         )
                     })
