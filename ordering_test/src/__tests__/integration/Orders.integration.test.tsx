@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { useNavigate } from 'react-router-dom';
 import { useGetAllOrders } from '../../api/getAllOrders.api';
-import Orders from '../../components/Orders'; // Adjust the path as necessary
+import Orders from '../../components/Orders'; 
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),

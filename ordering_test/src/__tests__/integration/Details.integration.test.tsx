@@ -1,10 +1,9 @@
-import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { useLocation } from 'react-router-dom';
 import { useGetOrder } from '../../api/getOrder.api';
 import { useAddOrder } from '../../api/addOrder.api';
-import Details from '../../components/Details'; // Adjust the path as necessary
+import Details from '../../components/Details';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();

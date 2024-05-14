@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { toast } from 'react-toastify';
-import Products from '../../components/Products'; // Adjust the path as necessary
+import Products from '../../components/Products';
 import { useGetAllProducts } from '../../api/getAllProducts.api';
 
 // Mock the useGetAllProducts hook
@@ -26,7 +26,6 @@ const mockData = [
   { id: '11', price: '32', description: 'Product 11' },
   { id: '12', price: '202', description: 'Product 12' },
   { id: '13', price: '22', description: 'Product 13' },
-  // Add more mock products as needed for your tests
 ];
 
 const addCallback = jest.fn();
