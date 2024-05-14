@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { useGetAllCustomers } from '../../api/getAllCustomers.api';
-import Customers from '../../components/Customers'; // Adjust the path as necessary
+import Customers from '../../components/Customers';
 
 jest.mock('../../api/getAllCustomers.api');
 

@@ -12,6 +12,7 @@ import { GetOrderTypes } from "../../api/types";
 import { decrQuantity, isObjectDiff, incrQuantity, removeItem, addUpdateItem } from "./helpers";
 import Products from '../Products';
 import { useAddOrder } from '../../api/addOrder.api';
+import DetailsCard from './DetailsCard';
 
 const Details = () => {
     const {state} = useLocation();
@@ -70,25 +71,11 @@ const Details = () => {
                     </div>
                 </div>
             </div>
-                {isItemsVisible && 
-                    dataOrder?.items.map((item, i) => {
-                        return(
-                            <div data-testid={`item_details_${i}`} className="card" key={i}>
-                                <img src={'https://as2.ftcdn.net/v2/jpg/00/57/93/05/1000_F_57930538_Ytnz8Lk6JnQc1GA1cPfFVJ39o2KBBFUa.jpg'} alt="Denim Jeans" style={{width:"100%"}}/>
-                                <h1>{item["product-id"]}</h1>
-                                <p className="price">Unit price: {item["unit-price"]}€</p>
-                                <div style={{display: 'inline-flex', flexDirection: 'row', alignItems: 'center', width: '40%', justifyContent: 'space-between'}}>
-                                    <p>Quantity: {item.quantity}</p>
-                                    <div style={{display: 'inline-flex', flexDirection: 'column'}}>
-                                        <button onClick={() => updateLocalOrder(incrQuantity(i, dataOrder))}>↑</button>
-                                        <button disabled={parseInt(item.quantity) === 1} onClick={() => updateLocalOrder(decrQuantity(i, dataOrder))}>↓</button>
-                                    </div>
-                                </div>
-                                <p className="price">Total price: {item.total}€</p>
-                                <button className="remove_btn" onClick={() => updateLocalOrder(removeItem(i, dataOrder))}>Remove item</button>
-                            </div>
-                        )
-                    })
+                {isItemsVisible && dataOrder &&
+                    <DetailsCard
+                        data={dataOrder}
+                        updateLocalOrder={updateLocalOrder}
+                    />
                 }
         </div>
    )

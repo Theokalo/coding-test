@@ -1,9 +1,8 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { useNavigate } from 'react-router-dom';
 import { useGetAllOrders } from '../../api/getAllOrders.api';
-import Orders from '../../components/Orders'; // Adjust the path as necessary
+import Orders from '../../components/Orders'; 
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -13,9 +12,8 @@ jest.mock('react-router-dom', () => ({
 jest.mock('../../api/getAllOrders.api');
 
 const mockOrders = [
-    { id: '1', description: 'Order 1' },
-    { id: '2', description: 'Order 2' },
-    // Add more mock orders as needed for your tests
+    'order1',
+    'order2'
 ];
 
 beforeEach(() => {
