@@ -21,7 +21,6 @@ const Details = () => {
     const [isItemsVisible, setItemsVisible] = useState<boolean>(false);
     const [dataOrder, setDataOrder] = useState<GetOrderTypes>();
     const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-    console.log(data, dataOrder)
 
     useEffect(() => {
         if(data)
