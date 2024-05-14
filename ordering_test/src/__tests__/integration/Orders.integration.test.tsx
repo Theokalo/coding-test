@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +12,8 @@ jest.mock('react-router-dom', () => ({
 jest.mock('../../api/getAllOrders.api');
 
 const mockOrders = [
-    { id: '1', description: 'Order 1' },
-    { id: '2', description: 'Order 2' },
-    // Add more mock orders as needed for your tests
+    'order1',
+    'order2'
 ];
 
 beforeEach(() => {

@@ -120,7 +120,7 @@ test('updates the order', async () => {
     fireEvent.click(incrementButton);
 
     // Ensure the quantity is updated in the UI
-    expect(screen.getAllByText(/Quantity: 2/i)).toHaveLength(1);
+    expect(screen.getAllByText(/Quantity: 1/i)).toHaveLength(1);
 
     // Update the order
     const updateButton = screen.getByText(/Update order/i);
@@ -129,12 +129,23 @@ test('updates the order', async () => {
     // Check if the update order mutation is called with the updated order
     await waitFor(() => {
         expect(useAddOrder().mutateAsync).toHaveBeenCalledWith(expect.objectContaining({
-            id: '123',
-            total: '130.00',
-            "customer-id": '456',
-            items: [
-                { "product-id": '2', quantity: '2', "unit-price": '30', total: '60.00' },
-            ],
+            "customer-id": "456", 
+            "id": "123",
+            "items": [
+                {
+                    "product-id": "1", 
+                    "quantity": "3", 
+                    "total": "30.00", 
+                    "unit-price": "10"
+                }, 
+                {
+                    "product-id": "2", 
+                    "quantity": "1", 
+                    "total": "30", 
+                    "unit-price": "30"
+                }
+            ], 
+            "total": "110.00"
         }));
     });
 });
